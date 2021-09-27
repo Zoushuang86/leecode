@@ -25,21 +25,26 @@
 内存消耗：13.6 MB, 在所有 Python3 提交中击败了10.76%的用户
 """
 class Solution:
+    """
+    执行用时：124 ms, 在所有 Python3 提交中击败了17.77%的用户
+    内存消耗：14.9 MB, 在所有 Python3 提交中击败了88.75%的用户
+    """
     def lengthOfLongestSubstring(self, s: str) -> int:
-        if len(s) < 2:
-            return len(s)
-        else:
-            i = 0
-            j = 1
-            max = 0
-            while j < len(s):
-                if s[j] in s[i:j]:
-                    max = len(s[i:j]) if max < len(s[i:j]) else max
-                    i = s.rindex(s[j], i, j) + 1
-                j += 1
-            return len(s[i:j]) if max < len(s[i:j]) else max
+        arr = list(s)
+        freq = [0 for i in range(256)]  # 所有字符的ASCII码频率
+        left, right = 0, -1     # 滑动窗口s[left, right]
+        result = 0
+        while left < len(arr):
+            if (right+1 < len(arr)) and (freq[ord(arr[right+1])] == 0):
+                right += 1
+                freq[ord(arr[right])] += 1
+            else:
+                freq[ord(arr[left])] -= 1
+                left += 1
+            result = max(result, right-left+1)
+        return result
 
 
 if __name__ == "__main__":
-    s = "dvdf"
+    s = "pwwkew"
     print(Solution().lengthOfLongestSubstring(s))
