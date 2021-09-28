@@ -1,3 +1,4 @@
+import collections
 """
 350. 两个数组的交集 II
 给定两个数组，编写一个函数来计算它们的交集。
@@ -42,7 +43,7 @@ class Solution:
 hash表
 执行用时：52 ms, 在所有 Python3 提交中击败了89.63%的用户
 内存消耗：15.1 MB, 在所有 Python3 提交中击败了5.15%的用户
-"""
+
 class Solution:
     def intersect(self, nums1, nums2):
         if len(nums1) > len(nums2):
@@ -62,9 +63,30 @@ class Solution:
                         m.pop(num)
 
         return intersection
+"""
+"""
+执行用时：36 ms, 在所有 Python3 提交中击败了66.34%的用户
+内存消耗：15 MB, 在所有 Python3 提交中击败了80.92%的用户
+"""
+class Solution:
+    def intersect(self, nums1, nums2):
+        record = dict()
+        for e in nums1:
+            if record.get(e) == None:
+                record[e] = 1
+            else:
+                record[e] += 1
+
+        result = []
+        for e in nums2:
+            if record.get(e) != None and record[e] > 0:
+                result.append(e)
+                record[e] -= 1
+        return result
+
 
 if __name__ == "__main__":
-    s = [1,2,2,1]
-    t = [2, 2]
+    s = [4,9,5]
+    t = [9,4,9,8,4]
     A = Solution()
     print(A.intersect(s, t))
