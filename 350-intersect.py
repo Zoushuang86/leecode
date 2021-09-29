@@ -67,16 +67,20 @@ class Solution:
 """
 执行用时：36 ms, 在所有 Python3 提交中击败了66.34%的用户
 内存消耗：15 MB, 在所有 Python3 提交中击败了80.92%的用户
+时间复杂度：O(n)
+空间复杂度：O(n)
 """
 class Solution:
     def intersect(self, nums1, nums2):
         record = dict()
+        # O(n)
         for e in nums1:
             if record.get(e) == None:
                 record[e] = 1
             else:
                 record[e] += 1
 
+        # O(n)
         result = []
         for e in nums2:
             if record.get(e) != None and record[e] > 0:

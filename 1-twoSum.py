@@ -27,15 +27,15 @@ class Solution1:
 
 
 """
-执行用时：40 ms, 在所有 Python3 提交中击败了94.88%的用户
-内存消耗：14.5 MB, 在所有 Python3 提交中击败了35.50%的用户
+执行用时：36 ms, 在所有 Python3 提交中击败了76.49%的用户
+内存消耗：15.9 MB, 在所有 Python3 提交中击败了20.23%的用户
 """
 class Solution:
     def twoSum(self, nums, target):
         hash_dict = {}
         for i in range(len(nums)):
             temp = target - nums[i]
-            if temp in hash_dict.keys():
+            if hash_dict.get(temp) != None:
                 return [hash_dict[temp], i]
             else:
                 hash_dict[nums[i]] = i

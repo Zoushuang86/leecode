@@ -30,6 +30,8 @@ class Solution:
     """
     执行用时：28 ms, 在所有 Python3 提交中击败了93.28%的用户
     内存消耗：15.1 MB, 在所有 Python3 提交中击败了48.56%的用户
+    时间复杂度：O(n)
+    空间复杂度：O(n)
     """
     def intersection(self, nums1, nums2):
         record = set(nums1)
