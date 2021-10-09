@@ -31,7 +31,7 @@ class Solution:
         return False
 """
 """
-维护一个长为k的Hash集合
+维护一个长为k的Hash集合set表示滑动窗口
 执行用时：44 ms, 在所有 Python3 提交中击败了82.38%的用户
 内存消耗：19 MB, 在所有 Python3 提交中击败了82.46%的用户
 """
@@ -45,6 +45,7 @@ class Solution:
             if len(kSet) > k:
                 kSet.remove(nums[i-k])
         return False
+
 
 
 if __name__ == "__main__":
