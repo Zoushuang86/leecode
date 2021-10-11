@@ -22,7 +22,7 @@ class ListNode:
 
 时间复杂度：O(2*n) + O(n) = O(n)
 空间复杂度：O(n) + O(1) = O(n)
-"""
+
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
         val = []
@@ -36,7 +36,7 @@ class Solution:
             node.val = i
             node = node.next
         return head
-
+"""
 """
 方法二：迭代
 我们可以申请两个指针，第一个指针叫 pre，最初是指向 null 的。
@@ -46,13 +46,9 @@ class Solution:
 
 执行用时：40 ms, 在所有 Python3 提交中击败了80.49%的用户
 内存消耗：15.5 MB, 在所有 Python3 提交中击败了38.67%的用户
-"""
+
 class Solution(object):
     def reverseList(self, head):
-        """
-        :type head: ListNode
-        :rtype: ListNode
-        """
         # 申请两个节点，pre和 cur，pre指向None
         pre = None
         cur = head
@@ -65,4 +61,38 @@ class Solution(object):
             pre = cur
             cur = tmp
         return pre
+"""
 
+"""
+方法三：3指针pre、cur、next
+执行用时：36 ms, 在所有 Python3 提交中击败了61.08%的用户
+内存消耗：15.6 MB, 在所有 Python3 提交中击败了47.38%的用户
+"""
+class Solution(object):
+    def reverseList(self, head):
+        pre = None
+        cur = head
+        while cur != None:
+            next = cur.next
+            cur.next = pre
+            pre = cur
+            cur = next
+        return pre
+
+
+def print_ListNode(ListNode):
+    while ListNode != None:
+        print(ListNode.val, end="")
+        print("->", end="")
+        ListNode = ListNode.next
+    print("None")
+
+
+if __name__ == "__main__":
+    head = ListNode(0)
+    next = head
+    for i in range(1, 6):
+        next.next = ListNode(i)
+        next = next.next
+    new_head = Solution().reverseList(head)
+    print_ListNode(new_head)
