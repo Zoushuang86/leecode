@@ -18,13 +18,50 @@ from ListNode import *
 应当保持奇数节点和偶数节点的相对顺序。
 链表的第一个节点视为奇数节点，第二个节点视为偶数节点，以此类推。
 """
+"""
+执行用时：40 ms, 在所有 Python3 提交中击败了61.21%的用户
+内存消耗：16.5 MB, 在所有 Python3 提交中击败了75.53%的用户
+
 class Solution:
     def oddEvenList(self, head: ListNode) -> ListNode:
-        pass
+        if head == None or head.next == None or head.next.next == None:
+            return head
+        cur1, cur2, cur = head, head.next, head.next.next
+        while cur2 != None and cur2.next != None:
+            cur = cur2.next
+            cur2.next = cur.next
+            cur.next = cur1.next
+            cur1.next = cur
+            cur1 = cur1.next
+            cur2 = cur2.next
+
+        return head
+"""
+"""
+执行用时：36 ms, 在所有 Python3 提交中击败了82.74%的用户
+内存消耗：16.6 MB, 在所有 Python3 提交中击败了52.42%的用户
+"""
+class Solution:
+    def oddEvenList(self, head: ListNode) -> ListNode:
+        odd, even = ListNode(), ListNode()
+        cur1, cur2, cur = odd, even, head
+        index = 1
+        while cur:
+            if index % 2 == 1:
+                cur1.next = cur
+                cur1 = cur1.next
+            else:
+                cur2.next = cur
+                cur2 = cur2.next
+            cur = cur.next
+            index += 1
+        cur1.next = even.next
+        cur2.next = None
+        return odd.next
 
 
 if __name__ == "__main__":
-    arr = [1,2,3,4,5,6,7]
+    arr = [1,2,3,4,5,6,7,8]
     head = create_LinkedList(arr)
     print_LinkedList(head)
     new_head = Solution().oddEvenList(head)
