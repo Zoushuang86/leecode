@@ -50,7 +50,6 @@ class Solution:
                     temp.next = ListNode(int(i))
                     temp = temp.next
                 return head
-
         num1 = 0
         temp1 = l1
         while temp1 != None:
@@ -65,7 +64,6 @@ class Solution:
         res = list(str(num1 + num2))
         result = create_LinkedList(res)
         return result
-
 
 
 if __name__ == "__main__":
