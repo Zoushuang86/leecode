@@ -26,3 +26,10 @@ class BT:
                 nodes.pop(0)
         else:
             self.root = None
+
+    def inorder(self, node):
+        if not node:
+            return None
+        self.inorder(node.left)
+        print(node.val, end=" ")
+        self.inorder(node.right)

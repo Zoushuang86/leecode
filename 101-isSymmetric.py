@@ -43,7 +43,7 @@ class TreeNode:
 假设树上一共 nn 个节点。
 时间复杂度：这里遍历了这棵树，渐进时间复杂度为 O(n)。
 空间复杂度：这里的空间复杂度和递归使用的栈空间有关，这里递归层数不超过 n，故渐进空间复杂度为 O(n。
-
+"""
 class Solution:
     def isSymmetricTree(self, l: TreeNode, r: TreeNode) -> bool:
         if not l and not r:
@@ -60,7 +60,7 @@ class Solution:
             return True
         else:
             return self.isSymmetricTree(root.left, root.right)
-"""
+
 
 """
 迭代法
