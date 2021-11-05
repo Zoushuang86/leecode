@@ -30,13 +30,32 @@
 -104 <= Node.val <= 104
 """
 from binary_tree import *
+
+"""
+自底向上递归
+"""
 class Solution:
     def isBalanced(self, root: TreeNode) -> bool:
-        pass
+        return self.height(root) >= 0
+
+    def height(self, node):
+        # 终止条件
+        if node == None:
+            return 0
+
+        # 先判断该节点的左子树和右子树是否是平衡二叉树
+        # 以及该节点为根的树是否是平衡二叉树
+        leftHeight = self.height(node.left)
+        rightHeight = self.height(node.right)
+        # 不是平衡二叉树，返回-1
+        if leftHeight == -1 or rightHeight == -1 or abs(leftHeight - rightHeight) > 1:
+            return -1
+        else:   # 是平衡二叉树，返回该节点为根的树的高度
+            return max(leftHeight, rightHeight) + 1
 
 
 if __name__ == "__main__":
     s = Solution()
-    arr = [1,2,3,4,5,6,7,8]
+    arr = [1,2,2,3,3,None,None,4,4]
     bt = BT(arr)
     print(s.isBalanced(bt.root))
