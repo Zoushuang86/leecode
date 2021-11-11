@@ -1,1 +1,2 @@
-print(['a', 'b', 'c'] + ['d', 'e'])
+string = "a"
+print(string == string[::-1])
