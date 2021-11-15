@@ -1,2 +1,3 @@
-visited = [[False] * 2] * 3
-print(visited)
+k = "111111"
+k[0:1] = "2"
+print(k)

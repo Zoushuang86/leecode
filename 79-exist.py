@@ -36,7 +36,6 @@ board 和 word 仅由大小写英文字母组成
 """
 class Solution:
     direct = [[-1, 0], [0, 1], [1, 0], [0, -1]] # 四个可能的方向上右下左
-    d = ["上", "右", "下", "左"]
     col, row = 0, 0
     visited = list()
 
