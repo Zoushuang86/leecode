@@ -27,7 +27,7 @@
 滚动数组
 执行用时：44 ms, 在所有 Python3 提交中击败了37.94%的用户
 内存消耗：13.5 MB, 在所有 Python3 提交中击败了9.11%的用户
-"""
+
 class Solution:
     def climbStairs(self, n: int) -> int:
         p = 0
@@ -38,6 +38,32 @@ class Solution:
             q = r
             r = p + q
         return r
+"""
+"""
+# 自上而下：递归
+# 超时
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        if n == 1:
+            return 1
+        if n == 2:
+            return 2
+        return self.climbStairs(n-1) + self.climbStairs(n-2)
+"""
+"""
+自下而上：动态规划
+"""
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        if n < 2:
+            return 1
+        memo = [-1 for _ in range(n+1)]
+        memo[0] = 1
+        memo[1] = 1
+        for i in range(2, n+1):
+            memo[i] = memo[i-1] + memo[i-2]
+        return memo[n]
+
 
 if __name__ == "__main__":
     print(Solution().climbStairs(5))
