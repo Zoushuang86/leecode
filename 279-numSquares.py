@@ -27,7 +27,7 @@
 BFS无权图方法：
 执行用时：476 ms, 在所有 Python3 提交中击败了82.64%的用户
 内存消耗：15.5 MB, 在所有 Python3 提交中击败了19.15%的用户
-"""
+
 class Solution:
     def numSquares(self, n: int) -> int:
         queue = []  # [num, step]:num值，step走到num经过了几条路径
@@ -52,9 +52,22 @@ class Solution:
                     queue.append([temp, step + 1])
                     visited[temp] = True
                 i += 1
+"""
+"""
+动态规划
+"""
+import math
+class Solution:
+    def numSquares(self, n: int) -> int:
+        memo = [i for i in range(n + 1)]
+        memo[1] = 1
+        for i in range(2, n + 1):
+            for j in range(1, int(math.sqrt(i)+1)):
+                memo[i] = min(1+memo[i-j*j], memo[i])
+        return memo[n]
 
 
 if __name__ == "__main__":
-    A = 1
+    A = 13
     s = Solution()
     print(s.numSquares(A))
