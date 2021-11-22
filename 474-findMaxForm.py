@@ -30,7 +30,24 @@ strs[i] 仅由 '0' 和 '1' 组成
 """
 class Solution:
     def findMaxForm(self, strs: list, m: int, n: int) -> int:
-        pass
+        length = len(strs)
+        dp = [[[0 for _ in range(n+1)] for _ in range(m+1)] for _ in range(length+1)]
+
+        zeroones = []
+        for str in strs:
+            zeroone = [0, 0]
+            for i in range(len(str)):
+                zeroone[ord(str[i]) - ord('0')] += 1
+            zeroones.append(zeroone)
+
+        for i in range(1, length+1):
+            zero, one = zeroones[i-1][0], zeroones[i-1][1]
+            for j in range(m+1):
+                for k in range(n+1):
+                    dp[i][j][k] = dp[i-1][j][k]
+                    if j >= zero and k >= one:
+                        dp[i][j][k] = max(dp[i][j][k], dp[i-1][j-zero][k-one] + 1)
+        return dp[length][m][n]
 
 
 if __name__ == "__main__":
