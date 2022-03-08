@@ -1,3 +1,2 @@
-A = None
-B = None
-print(A and B)
+s = [1,2,3,4]
+print()
