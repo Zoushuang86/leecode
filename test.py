@@ -1,2 +1,2 @@
-s = set()
-s.remove()
+s = []
+s.
