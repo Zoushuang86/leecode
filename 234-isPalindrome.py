@@ -64,6 +64,36 @@ class Solution:
             cur1 = cur1.next
         return True
 
+# 双指针法
+class Solution:
+    def isPalindrome(self, head: ListNode) -> bool:
+        nodes = []
+        while head:
+            nodes.append(head.val)
+            head = head.next
+
+        deleteFlag = False
+        i, j = 0, len(nodes) - 1
+        while i < j:
+            if nodes[i] == nodes[j]:
+                i += 1
+                j -= 1
+            else:
+                if nodes[i] == nodes[j - 1]:
+                    if deleteFlag:
+                        return False
+                    else:
+                        j -= 1
+                        deleteFlag = True
+                elif nodes[i + 1] == nodes[j]:
+                    if deleteFlag:
+                        return False
+                    else:
+                        i += 1
+                        deleteFlag = True
+                else:
+                    return False
+        return True
 
 if __name__ == "__main__":
     arr1 = [0,1,1,0]
