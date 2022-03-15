@@ -70,6 +70,36 @@ class Solution:
         return False
 
 
+class Solution:
+    def exist(self, board: list, word: str) -> bool:
+        m, n = len(board), len(board[0])
+        dirct = [[0, -1], [0, 1], [-1, 0], [1, 0]]
+        vis = [[False] * n for _ in range(m)]
+
+        def check(x, y):
+            return 0 <= x < m and 0 <= y < n
+
+        def dfs(x, y, index):
+            if index == len(word) - 1:
+                return board[x][y] == word[index]
+
+            if board[x][y] == word[index]:
+                vis[x][y] = True
+                for offsetx, offsety in dirct:
+                    i, j = x + offsetx, y + offsety
+                    if check(i, j) and not vis[i][j]:
+                        if dfs(i, j, index + 1):
+                            return True
+                vis[x][y] = False
+            return False
+
+        for i in range(m):
+            for j in range(n):
+                if dfs(i, j, 0):
+                    return True
+        return False
+
+
 if __name__ == "__main__":
     board = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
     word = "ABCCED"
